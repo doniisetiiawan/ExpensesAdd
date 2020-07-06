@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import styles from './styles';
 import * as storageMethods from './utils/storageMethods';
+import * as dateMethods from './utils/dateMethods';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +15,36 @@ class App extends Component {
   }
 
   // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount = async () => {
+  UNSAFE_componentWillMount = () => {
+    // storageMethods.resetAsyncStorage();
+    this.setState({
+      month: dateMethods.getMonth(),
+      year: dateMethods.getYear(),
+    });
+
+    this._updateBudget();
+  };
+
+  _renderEnterBudgetComponent = () => {
+    this.props.navigation.push('EnterBudget', {
+      monthString: dateMethods.getMonthString(
+        this.state.month,
+      ),
+      saveAndUpdateBudget: (budget) => this._saveAndUpdateBudget(budget),
+    });
+  };
+
+  _saveAndUpdateBudget = async (budget) => {
+    await storageMethods.saveMonthlyBudget(
+      this.state.month,
+      this.state.year,
+      budget,
+    );
+
+    this._updateBudget();
+  };
+
+  _updateBudget = async () => {
     const response = await storageMethods.checkCurrentMonthBudget();
 
     if (response !== false) {
@@ -23,7 +54,7 @@ class App extends Component {
       return;
     }
 
-    alert('You have not set a budget for this month!');
+    this._renderEnterBudgetComponent();
   };
 
   render() {
@@ -38,3 +69,7 @@ class App extends Component {
 }
 
 export default App;
+
+App.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.func).isRequired,
+};

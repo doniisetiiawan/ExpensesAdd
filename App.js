@@ -1,18 +1,24 @@
 /* eslint-disable react/jsx-filename-extension */
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from './app/App';
+import EnterBudget from './app/components/EnterBudget';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Home />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="EnterBudget"
+          component={EnterBudget}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
