@@ -66,7 +66,8 @@ class App extends Component {
 
     if (response !== false) {
       this.setState({
-        budget: response,
+        budget: response.budget,
+        spent: response.spent,
       });
 
       this._updateCurrentMonthExpenses();

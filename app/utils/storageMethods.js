@@ -26,7 +26,12 @@ export const checkCurrentMonthBudget = async () => {
     return false;
   }
 
-  return response[year][month].budget;
+  const details = response[year][month];
+
+  return {
+    budget: details.budget,
+    spent: details.spent,
+  };
 };
 
 export const saveMonthlyBudget = async (

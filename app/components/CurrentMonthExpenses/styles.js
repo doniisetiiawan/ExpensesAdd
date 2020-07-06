@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  progressView: {
+    margin: 10,
+  },
 });
 
 export default styles;
