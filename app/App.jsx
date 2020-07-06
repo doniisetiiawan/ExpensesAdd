@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './styles';
 import * as storageMethods from './utils/storageMethods';
 import * as dateMethods from './utils/dateMethods';
 import AddExpenses from './components/AddExpenses';
+import CurrentMonthExpenses from './components/CurrentMonthExpenses';
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,21 @@ class App extends Component {
     this._updateBudget();
   };
 
+  _updateCurrentMonthExpenses = async () => {
+    const responseObject = await storageMethods.getMonthObject(
+      this.state.month,
+      this.state.year,
+    );
+
+    if (responseObject) {
+      this.setState({
+        budget: responseObject.budget,
+        expenses: responseObject.expenses,
+        spent: responseObject.spent,
+      });
+    }
+  };
+
   _updateBudget = async () => {
     const response = await storageMethods.checkCurrentMonthBudget();
 
@@ -52,6 +68,8 @@ class App extends Component {
       this.setState({
         budget: response,
       });
+
+      this._updateCurrentMonthExpenses();
       return;
     }
 
@@ -61,11 +79,16 @@ class App extends Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <Text>
-          Your budget is {this.state.budget || 'not set'}!
-        </Text>
+        <CurrentMonthExpenses
+          budget={this.state.budget || '0'}
+          expenses={this.state.expenses}
+          month={this.state.month}
+          spent={this.state.spent || 0}
+          year={this.state.year}
+        />
         <AddExpenses
           month={this.state.month}
+          updateCurrentMonthExpenses={() => this._updateCurrentMonthExpenses()}
           year={this.state.year}
         />
       </View>

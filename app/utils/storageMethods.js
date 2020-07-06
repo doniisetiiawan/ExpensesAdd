@@ -93,3 +93,11 @@ export const saveItemToBudget = async (
 
   return true;
 };
+
+export const getMonthObject = async (month, year) => {
+  const response = await getAsyncStorage();
+
+  if (response[year] && response[year][month]) {
+    return response[year][month];
+  }
+};

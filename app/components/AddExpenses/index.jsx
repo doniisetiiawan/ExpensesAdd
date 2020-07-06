@@ -17,6 +17,8 @@ class AddExpenses extends React.Component {
     this.setState({
       modalVisible: !this.state.modalVisible,
     });
+
+    this.props.updateCurrentMonthExpenses();
   };
 
   render() {
@@ -42,5 +44,6 @@ export default AddExpenses;
 
 AddExpenses.propTypes = {
   month: PropTypes.string.isRequired,
+  updateCurrentMonthExpenses: PropTypes.func.isRequired,
   year: PropTypes.string.isRequired,
 };

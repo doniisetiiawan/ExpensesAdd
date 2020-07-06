@@ -19,6 +19,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "off",
     "no-underscore-dangle": "off",
+    "consistent-return": "off",
     "no-console": "off"
   }
 }
