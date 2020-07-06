@@ -11,6 +11,7 @@ class CurrentMonthExpenses extends Component {
       return (
         <ExpenseRow
           amount={rowData.item.amount}
+          category={rowData.item.category}
           description={rowData.item.description}
         />
       );

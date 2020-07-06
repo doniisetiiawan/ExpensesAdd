@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
   },
+  icon: {
+    flex: 1,
+    marginLeft: 10,
+  },
 });
 
 export default styles;

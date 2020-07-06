@@ -2,6 +2,7 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -32,6 +33,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     paddingTop: 10,
   },
+  categoryIcon: {
+    flex: 1,
+    marginLeft: Dimensions.get('window').width - 50,
+    position: 'absolute',
+  },
   descriptionInput: {
     borderColor: '#86B2CA',
     borderRadius: 10,
@@ -48,15 +54,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 10,
   },
+  expandableCellContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   headerText: {
     color: '#7D878D',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 15,
     textAlign: 'center',
-  },
-  expandableCellContainer: {
-    flex: 1,
   },
 });
 

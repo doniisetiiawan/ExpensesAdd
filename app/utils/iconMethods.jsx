@@ -1,20 +1,56 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const expenses = [
-  { amount: '4', category: 'coffee', description: 'Latte' },
-  {
-    amount: '1.50',
-    category: 'books',
-    description: 'Sunday Paper',
+export const categories = {
+  books: {
+    name: 'Books',
+    iconName: 'book',
   },
-  { amount: '35', category: 'car', description: 'Gas' },
-  {
-    amount: '60',
-    category: 'restaurant',
-    description: 'Steak dinner',
+  car: {
+    name: 'Car',
+    iconName: 'car',
   },
-];
+  coffee: {
+    name: 'Coffee',
+    iconName: 'coffee',
+  },
+  drinks: {
+    name: 'Drinks',
+    iconName: 'beer',
+  },
+  entertainment: {
+    name: 'Entertainment',
+    iconName: 'film',
+  },
+  hobby: {
+    name: 'Hobby',
+    iconName: 'gamepad',
+  },
+  home: {
+    name: 'Home',
+    iconName: 'home',
+  },
+  grocery: {
+    name: 'Grocery',
+    iconName: 'shopping-cart',
+  },
+  restaurant: {
+    name: 'Restaurant',
+    iconName: 'cutlery',
+  },
+  shopping: {
+    name: 'Shopping',
+    iconName: 'shopping-bag',
+  },
+  travel: {
+    name: 'Travel',
+    iconName: 'plane',
+  },
+  utilities: {
+    name: 'Utilities',
+    iconName: 'plug',
+  },
+};
 
 export const getIconComponent = (
   categoryName,
