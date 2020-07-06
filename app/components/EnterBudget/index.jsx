@@ -64,5 +64,5 @@ export default EnterBudget;
 
 EnterBudget.propTypes = {
   navigation: PropTypes.objectOf(PropTypes.func).isRequired,
-  route: PropTypes.objectOf(PropTypes.func).isRequired,
+  route: PropTypes.objectOf(PropTypes.any).isRequired,
 };

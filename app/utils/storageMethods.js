@@ -61,3 +61,35 @@ export const logAsyncStorage = async () => {
   console.log('Logging Async Storage');
   console.table(response);
 };
+
+const getTotalSpentForMonth = (array) => {
+  let total = 0;
+
+  array.forEach((elem) => {
+    total += parseInt(elem.amount, 10);
+  });
+
+  return total;
+};
+
+export const saveItemToBudget = async (
+  month,
+  year,
+  expenseObject,
+) => {
+  const response = await getAsyncStorage();
+
+  const newExpensesArray = [
+    ...response[year][month].expenses,
+    expenseObject,
+  ];
+
+  const newTotal = getTotalSpentForMonth(newExpensesArray);
+
+  response[year][month].expenses = newExpensesArray;
+  response[year][month].spent = newTotal;
+
+  await setAsyncStorage(response);
+
+  return true;
+};

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from './styles';
 import * as storageMethods from './utils/storageMethods';
 import * as dateMethods from './utils/dateMethods';
+import AddExpenses from './components/AddExpenses';
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,10 @@ class App extends Component {
         <Text>
           Your budget is {this.state.budget || 'not set'}!
         </Text>
+        <AddExpenses
+          month={this.state.month}
+          year={this.state.year}
+        />
       </View>
     );
   }
