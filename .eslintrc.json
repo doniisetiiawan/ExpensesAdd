@@ -15,6 +15,9 @@
   "plugins": ["react"],
   "parser": "babel-eslint",
   "rules": {
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": "off",
+    "no-console": "off"
   }
 }
